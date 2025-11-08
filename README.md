@@ -43,21 +43,24 @@ Or compile and run directly:
 
 ## Docker Support
 
-The application can be containerized and run with Docker.
+The application can be containerized and run with Docker. The Dockerfile uses a multi-stage build that compiles the application inside Docker and minimizes the final image size.
 
 ### Building the Docker Image
 
-First, build the JAR file:
-
-```bash
-./gradlew build
-```
-
-Then, build the Docker image:
+Simply build the Docker image - no local SDK installation required:
 
 ```bash
 docker build -t learn-kotlin:latest .
 ```
+
+The multi-stage build will:
+1. Use a Gradle+JDK builder stage to download dependencies and compile the application
+2. Copy only the resulting JAR to a minimal JRE-based runtime image (significantly smaller)
+
+This approach:
+- ✅ No need to install Java or Gradle locally
+- ✅ Minimizes final image size by excluding build tools and source code
+- ✅ Reproducible builds in any environment
 
 ### Running with Docker
 
