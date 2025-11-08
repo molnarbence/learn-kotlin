@@ -41,6 +41,30 @@ Or compile and run directly:
 ./build/install/learn-kotlin/bin/learn-kotlin
 ```
 
+## Docker Support
+
+The application can be containerized and run with Docker.
+
+### Building the Docker Image
+
+First, build the JAR file:
+
+```bash
+./gradlew build
+```
+
+Then, build the Docker image:
+
+```bash
+docker build -t learn-kotlin:latest .
+```
+
+### Running with Docker
+
+```bash
+docker run --rm learn-kotlin:latest
+```
+
 ## Project Structure
 
 ```
@@ -51,6 +75,7 @@ learn-kotlin/
 │           └── Main.kt          # Main application file
 ├── build.gradle.kts              # Gradle build configuration
 ├── settings.gradle.kts           # Gradle settings
+├── Dockerfile                    # Docker image definition
 └── README.md                     # This file
 ```
 
